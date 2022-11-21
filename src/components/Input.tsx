@@ -13,6 +13,7 @@ export function Input({ ...rest }: IInputProps) {
       borderWidth={0}
       fontFamily="body"
       placeholderTextColor="gray.300"
+      rounded="full"
       _focus={{
         bg: "gray.700",
         borderWidth: 1,
