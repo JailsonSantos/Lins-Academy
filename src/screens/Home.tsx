@@ -2,7 +2,7 @@ import { Center, Text } from 'native-base'
 
 
 export function Home() {
-  <Center>
-    <Text>Home</Text>
+  <Center flex={1}>
+    <Text color="white">Home</Text>
   </Center>
 }
