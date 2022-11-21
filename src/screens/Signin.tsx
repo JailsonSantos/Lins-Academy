@@ -22,7 +22,6 @@ export function SignIn() {
       <VStack
         px={10}
         flex={1}
-        bg="gray.700"
         pb={Platform.OS === 'ios' ? 40 : 16}
       >
         <Image
