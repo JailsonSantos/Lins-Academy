@@ -12,8 +12,18 @@ import { Platform } from 'react-native'
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
 import BackgroundImg from '@assets/background.png'
+import { useNavigation } from '@react-navigation/native'
+
+import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
 
 export function SignIn() {
+
+  const navitation = useNavigation<AuthNavigatorRoutesProps>();
+
+  function handleNewAccount() {
+    navitation.navigate('signUp');
+  }
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -73,6 +83,7 @@ export function SignIn() {
           <Button
             variant="outline"
             title="Criar conta"
+            onPress={handleNewAccount}
           />
         </Center>
       </VStack>

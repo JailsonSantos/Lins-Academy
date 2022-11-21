@@ -12,8 +12,15 @@ import { Platform } from 'react-native'
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
 import BackgroundImg from '@assets/background.png'
+import { useNavigation } from '@react-navigation/native'
 
 export function SignUp() {
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -68,6 +75,7 @@ export function SignUp() {
           mt={24}
           variant="outline"
           title="Voltar para o login"
+          onPress={handleGoBack}
         />
 
       </VStack>
