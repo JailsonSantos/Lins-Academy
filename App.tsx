@@ -2,6 +2,7 @@ import { NativeBaseProvider } from 'native-base';
 
 import { Text, View, StatusBar } from 'react-native';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
+import { Loading } from '@components/Loading';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,12 +19,11 @@ export default function App() {
         barStyle="light-content"
         backgroundColor="transparent"
       />
-      {
-        fontsLoaded ?
-          <Text>Lins Academy</Text>
-          : <View />
-      }
+
+      <Loading />
+
     </NativeBaseProvider>
+
 
   );
 }
