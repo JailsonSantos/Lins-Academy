@@ -39,6 +39,7 @@ export function SignIn() {
           resizeMode="contain"
           source={BackgroundImg}
           alt="Pessoas treinando"
+          defaultSource={BackgroundImg}
         />
         <Center my={24}>
           <LogoSvg />
