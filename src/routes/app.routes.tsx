@@ -1,14 +1,18 @@
-import { createBottomTabNavigator, BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
+import {
+  createBottomTabNavigator,
+  BottomTabNavigationProp
+} from '@react-navigation/bottom-tabs'
 
 import { Home } from '@screens/Home';
 import { History } from '@screens/History';
 import { Profile } from '@screens/Profile';
 import { Exercise } from '@screens/Exercise';
 
+import { useTheme } from 'native-base'
 import HomeSvg from '@assets/home.svg'
+import { Platform } from 'react-native';
 import HistorySvg from '@assets/history.svg'
 import ProfileSvg from '@assets/profile.svg'
-import { useTheme } from 'native-base'
 
 
 type AppRoutes = {
@@ -24,13 +28,25 @@ const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>();
 
 export function AppRoutes() {
 
-  const { sizes } = useTheme();
+  const { sizes, colors } = useTheme();
+
   const iconSize = sizes[6] // tamanho dos icones
 
   return (
     <Navigator screenOptions={{
       headerShown: false,
-      tabBarShowLabel: false
+      tabBarShowLabel: false,
+      tabBarActiveTintColor: colors.green[500],
+      tabBarInactiveTintColor: colors.green[200],
+      tabBarStyle: {
+        backgroundColor: colors.gray[600],
+        borderTopWidth: 0,
+        height: Platform.OS === 'android' ? 'auto' : 96,
+        paddingBottom: sizes[10],
+        paddingTop: sizes[6]
+
+
+      }
     }}>
       <Screen
         name="home"
@@ -63,6 +79,7 @@ export function AppRoutes() {
       <Screen
         name="exercise"
         component={Exercise}
+        options={{ tabBarButton: () => null }} // Oculta o icone do tabBottom
 
       />
     </Navigator>
