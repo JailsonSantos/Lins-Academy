@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { HistoryCard } from '@components/HistoryCard'
 import { ScreenHeader } from '@components/ScreenHeader'
-import { Heading, VStack, SectionList } from 'native-base'
+import { Heading, VStack, SectionList, Text } from 'native-base'
 
 
 export function History() {
@@ -31,6 +31,14 @@ export function History() {
             {section.title}
           </Heading>
         )}
+        contentContainerStyle={exercises.length === 0 && { flex: 1, justifyContent: 'center' }}
+        ListEmptyComponent={() => (
+          <Text color="gray.100" textAlign="center">
+            Não há exercícios registrados ainda. {'\n'}
+            Vamos começar agora?
+          </Text>
+        )}
+        showsVerticalScrollIndicator={false}
       />
 
 
