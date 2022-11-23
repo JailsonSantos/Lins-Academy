@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native';
 
 export function HomeHeader() {
   return (
-    <HStack bg="gray.600" pt={16} pb={5} px={8} alignItems="center">
+    <HStack bg="gray.600" pt={8} pb={5} px={8} alignItems="center">
       <UserPhoto
         mr={4}
         size={16}
