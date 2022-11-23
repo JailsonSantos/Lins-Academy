@@ -6,15 +6,17 @@ import { TouchableOpacity } from 'react-native';
 import { Input } from '@components/Input';
 import { Button } from '@components/Button';
 
+const PHOTO_SIZE = 33;
+
 export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false);
-  const PHOTO_SIZE = 33;
 
   return (
     <VStack flex={1}>
       <ScreenHeader title="Perfil" />
-      <ScrollView>
-        <Center mt={6} px={10}>
+
+      <ScrollView contentContainerStyle={{ paddingBottom: 16 }}>
+        <Center mt={4} px={10}>
           {
             photoIsLoading ?
               <Skeleton
@@ -32,7 +34,7 @@ export function Profile() {
               />
           }
           <TouchableOpacity>
-            <Text color="green.500" fontWeight="bold" fontSize="md" mt={2} mb={8}>
+            <Text color="green.500" fontWeight="bold" fontSize="md" mt={2} mb={6}>
               Alterar foto
             </Text>
           </TouchableOpacity>
@@ -47,7 +49,7 @@ export function Profile() {
             placeholder="E-mail"
           />
         </Center>
-        <VStack px={10} mt={12} mb={9}>
+        <VStack px={10} mt={6} mb={9}>
           <Heading color="gray.200" fontSize="md" mb={2}>
             Aterar senha
           </Heading>
@@ -74,8 +76,6 @@ export function Profile() {
             title="Atualizar"
             mt={4}
           />
-
-
         </VStack>
       </ScrollView>
     </VStack>
