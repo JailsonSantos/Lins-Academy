@@ -16,9 +16,37 @@ import { useNavigation } from '@react-navigation/native'
 
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
 
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm, Controller } from 'react-hook-form'
+
+
+type FormDataProps = {
+  email: string;
+  password: string;
+}
+// Schema de validação do YUP
+const signUpSchema = yup.object({
+  email: yup.string().required('Informe o e-mail.').email('E-mail inválido.'),
+  password: yup.string().required('Informe a senha.').min(6, 'A senha deve ter pelo menos 6 caracteres.'),
+});
+
 export function SignIn() {
 
   const navitation = useNavigation<AuthNavigatorRoutesProps>();
+
+  // Validando o Schema do form com YupResolver
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormDataProps>({
+    resolver: yupResolver(signUpSchema)
+  });
+
+  function handleLogin({ email, password }: FormDataProps) {
+    console.log(email, password);
+  }
 
   function handleNewAccount() {
     navitation.navigate('signUp');
@@ -60,16 +88,39 @@ export function SignIn() {
           >
             Acesse sua conta
           </Heading>
-          <Input
-            placeholder="E-mail"
-            autoCapitalize="none"
-            keyboardType="email-address"
+
+          <Controller
+            name="email"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Input
+                value={value}
+                placeholder="E-mail"
+                autoCapitalize="none"
+                onChangeText={onChange}
+                keyboardType="email-address"
+                errorMessage={errors.email?.message}
+              />
+            )}
           />
-          <Input
-            secureTextEntry
-            placeholder="Senha"
+
+          <Controller
+            name="password"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Input
+                value={value}
+                secureTextEntry
+                placeholder="Senha"
+                onChangeText={onChange}
+                errorMessage={errors.password?.message}
+              />
+            )}
           />
-          <Button title="Acessar" />
+
+          <Button
+            title="Acessar"
+            onPress={handleSubmit(handleLogin)} />
         </Center>
 
         <Center mt={24}>

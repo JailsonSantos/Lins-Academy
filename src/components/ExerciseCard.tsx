@@ -20,7 +20,7 @@ export function ExerciseCard({ ...rest }: Props) {
           source={{ uri: 'https://www.hipertrofia.org/blog/wp-content/uploads/2014/11/remada-curvada-1.jpg' }}
         />
         <VStack flex={1}>
-          <Heading fontSize="lg" color="white">
+          <Heading fontSize="lg" color="white" fontFamily="heading">
             Remada Unilateral
           </Heading>
           <Text fontSize="sm" color="gray.200" mt={1} numberOfLines={2}>
