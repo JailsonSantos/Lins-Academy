@@ -1,4 +1,4 @@
-import { VStack, Icon, HStack, Heading, Text, Image, Box } from 'native-base'
+import { VStack, Icon, HStack, Heading, Text, Image, Box, ScrollView } from 'native-base'
 import { Feather } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
@@ -42,30 +42,35 @@ export function Exercise() {
         </HStack>
       </VStack>
 
-      <VStack p={8}>
-        <Image
-          h={80}
-          w="full"
-          mb={3}
-          rounded="lg"
-          resizeMode="cover"
-          alt="Nome do exercício"
-          source={{ uri: 'https://www.dicasdetreino.com.br/wp-content/uploads/2017/07/Tipos-de-Pegada-Treino-de-Costas.jpg' }}
-        />
-        <Box bg="gray.600" rounded="md" pb={4} px={4}>
-          <HStack alignItems="center" justifyContent="space-around" mb={6} mt={5}>
-            <HStack>
-              <SeriesSvg />
-              <Text color="gray.300" ml={2}>3 séries</Text>
+      <ScrollView>
+        <VStack p={8}>
+          <Image
+            h={80}
+            w="full"
+            mb={3}
+            rounded="lg"
+            resizeMode="cover"
+            alt="Nome do exercício"
+            source={{ uri: 'https://www.dicasdetreino.com.br/wp-content/uploads/2017/07/Tipos-de-Pegada-Treino-de-Costas.jpg' }}
+          />
+
+          <Box bg="gray.600" rounded="md" pb={4} px={4}>
+            <HStack alignItems="center" justifyContent="space-around" mb={6} mt={5}>
+              <HStack>
+                <SeriesSvg />
+                <Text color="gray.300" ml={2}>3 séries</Text>
+              </HStack>
+              <HStack>
+                <RepetitionsSvg />
+                <Text color="gray.300" ml={2}>12 repetições</Text>
+              </HStack>
             </HStack>
-            <HStack>
-              <RepetitionsSvg />
-              <Text color="gray.300" ml={2}>12 repetições</Text>
-            </HStack>
-          </HStack>
-          <Button title="Marcar como realizado" />
-        </Box>
-      </VStack>
+            <Button title="Marcar como realizado" />
+          </Box>
+
+        </VStack>
+      </ScrollView>
+
     </VStack>
   )
 }

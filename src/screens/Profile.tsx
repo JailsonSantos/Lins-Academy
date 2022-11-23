@@ -5,11 +5,16 @@ import { Center, ScrollView, Text, VStack, Skeleton, Heading } from 'native-base
 import { TouchableOpacity } from 'react-native';
 import { Input } from '@components/Input';
 import { Button } from '@components/Button';
+import * as ImagePiker from 'expo-image-picker'
 
 const PHOTO_SIZE = 33;
 
 export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false);
+
+  async function handleUserPhotoSelect() {
+    await ImagePiker.launchImageLibraryAsync();
+  }
 
   return (
     <VStack flex={1}>
@@ -33,7 +38,7 @@ export function Profile() {
                 source={{ uri: 'https://github.com/jailsonsantos.png' }}
               />
           }
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleUserPhotoSelect}>
             <Text color="green.500" fontWeight="bold" fontSize="md" mt={2} mb={6}>
               Alterar foto
             </Text>

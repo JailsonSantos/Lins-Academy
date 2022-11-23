@@ -15,7 +15,7 @@ export function ExerciseCard({ ...rest }: Props) {
           h={16}
           mr={4}
           rounded="md"
-          resizeMode="center"
+          resizeMode="cover"
           alt="Imagem do exercício"
           source={{ uri: 'https://www.hipertrofia.org/blog/wp-content/uploads/2014/11/remada-curvada-1.jpg' }}
         />
