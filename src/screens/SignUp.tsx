@@ -21,6 +21,10 @@ export function SignUp() {
     navigation.goBack();
   }
 
+  function handleSignUp() {
+
+  }
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -69,7 +73,14 @@ export function SignUp() {
             secureTextEntry
             placeholder="Senha"
           />
-          <Button title="Criar e acessar" />
+          <Input
+            secureTextEntry
+            placeholder="Confirme a senha"
+          />
+          <Button
+            title="Criar e acessar"
+            onPress={handleSignUp}
+          />
         </Center>
 
         <Button

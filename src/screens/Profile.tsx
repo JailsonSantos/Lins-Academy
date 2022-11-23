@@ -43,8 +43,6 @@ export function Profile() {
           })
         }
 
-        console.log(photoInfo);
-
         setUserPhoto(photoSelected.assets[0].uri);
       }
 
