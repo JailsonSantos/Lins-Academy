@@ -4,7 +4,8 @@ import {
   Center,
   VStack,
   Heading,
-  ScrollView
+  ScrollView,
+  useToast
 } from 'native-base'
 
 import LogoSvg from '@assets/logo.svg'
@@ -19,6 +20,9 @@ import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, Controller } from 'react-hook-form'
+import { useAuth } from '@hooks/useAuth'
+import { AppError } from '@utils/AppError'
+import { useState } from 'react'
 
 
 type FormDataProps = {
@@ -33,6 +37,7 @@ const signUpSchema = yup.object({
 
 export function SignIn() {
 
+  const { signIn } = useAuth()
   const navitation = useNavigation<AuthNavigatorRoutesProps>();
 
   // Validando o Schema do form com YupResolver
@@ -44,13 +49,34 @@ export function SignIn() {
     resolver: yupResolver(signUpSchema)
   });
 
-  function handleLogin({ email, password }: FormDataProps) {
-    console.log(email, password);
-  }
+  const toast = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleNewAccount() {
     navitation.navigate('signUp');
   }
+
+  async function handleLogin({ email, password }: FormDataProps) {
+
+    try {
+      setIsLoading(true)
+      await signIn(email, password);
+
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+
+      const title = isAppError ? error.message : 'Não foi possível entrar. Tente novamente mais tarde.'
+
+      setIsLoading(false)
+
+      toast.show({
+        title,
+        placement: 'top',
+        bgColor: 'red.500'
+      });
+    }
+  }
+
 
   return (
     <ScrollView
@@ -120,6 +146,7 @@ export function SignIn() {
 
           <Button
             title="Acessar"
+            isLoading={isLoading}
             onPress={handleSubmit(handleLogin)} />
         </Center>
 
